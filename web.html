@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversor de Temperatura</title>
+</head>
+<body>
+    <h1>Conversor de Temperatura</h1>
+
+    <input id="temperature" type="number" placeholder="Ingresa la temperatura">
+    <select id="fromScale">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+        <option value="K">Kelvin</option>
+    </select>
+    a
+    <select id="toScale">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+        <option value="K">Kelvin</option>
+    </select>
+    <button onclick="convert()">Convertir</button>
+
+    <p id="output"></p>
+
+    <script>
+        function convertTemperature(temp, fromScale, toScale) {
+            let celsius, fahrenheit, kelvin;
+
+            if (fromScale === 'C') {
+                celsius = temp;
+                fahrenheit = (temp * 9/5) + 32;
+                kelvin = parseFloat(temp) + 273.15;
+            } else if (fromScale === 'F') {
+                fahrenheit = temp;
+                celsius = (temp - 32) * 5/9;
+                kelvin = (temp - 32) * 5/9 + 273.15;
+            } else if (fromScale === 'K') {
+                kelvin = temp;
+                celsius = temp - 273.15;
+                fahrenheit = (temp - 273.15) * 9/5 + 32;
+            } else {
+                return "Escala no válida. Use 'C' para Celsius, 'F' para Fahrenheit, o 'K' para Kelvin.";
+            }
+
+            if (toScale === 'C') {
+                return `Resultado: ${celsius.toFixed(2)}°C`;
+            } else if (toScale === 'F') {
+                return `Resultado: ${fahrenheit.toFixed(2)}°F`;
+            } else if (toScale === 'K') {
+                return `Resultado: ${kelvin.toFixed(2)}K`;
+            } else {
+                return "Escala no válida. Use 'C' para Celsius, 'F' para Fahrenheit, o 'K' para Kelvin.";
+            }
+        }
+
+        function convert() {
+            let temperature = document.getElementById('temperature').value;
+            let fromScale = document.getElementById('fromScale').value;
+            let toScale = document.getElementById('toScale').value;
+            let output = convertTemperature(temperature, fromScale, toScale);
+            document.getElementById('output').innerText = output;
+        }
+    </script>
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap');
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #F8DE7E; /* Color pastel amarillo */
+    color: #5D535E; /* Color pastel gris oscuro */
+}
+
+h1 {
+    color: #D0A5A6; /* Color pastel rosa */
+}
+
+p {
+    color: #79A687; /* Color pastel verde */
+}
+
+a {
+    color: #C8553D; /* Color pastel rojo */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #5D535E;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    background-color: #F8DE7E;
+    padding: 20px;
+}
+</style>
+
+
+</body>
+</html>
